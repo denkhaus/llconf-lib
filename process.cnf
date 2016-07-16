@@ -1,0 +1,4 @@
+
+(process running
+    (test "ps" "-C" [arg:0])
+)

@@ -1,0 +1,51 @@
+(docker installed
+    (and
+        (is debian)
+        (and
+            (package absent "docker-engine")
+            (installed "apt-transport-https")
+            (setvar "docker-apt-list" "/etc/apt/sources.list.d/docker.list")
+            (change "rm" "-rf" [var:docker-apt-list])
+            (pipe
+              (change "echo" "deb https://apt.dockerproject.org/repo ubuntu-trusty main")
+              (change "tee" "-a" [var:docker-apt-list])
+            )
+            (change "apt-key" "adv"
+              "--keyserver" "hkp://p80.pool.sks-keyservers.net:80"
+              "--recv-keys" "58118E89F3A912897C070ADBF76221572C52609D"
+            )
+            (change "apt-get" "update" )
+            (installed "docker-engine")
+        )
+    )
+)
+
+(docker cleanup
+    (and
+        (docker remove untagged images)
+        (docker cleanup dangling volumes)
+    )
+)
+
+(docker remove untagged images
+    (and
+        (process running "docker")
+        (pipe
+            (change "docker" "images")
+            (change "grep" "'none'")
+            (change "tr" "-s" "' '")
+            (change "cut" "-d" "' '" "-f" "3")
+            (change "xargs" "-r" "docker" "rmi" "-f")
+        )
+    )
+)
+
+(docker cleanup dangling volumes
+    (and
+        (process running "docker")
+        (pipe
+            (change "docker" "volume" "ls" "-q" "-f" "dangling=true")
+            (change "xargs" "-r" "docker" "volume" "rm" )
+        )
+    )
+)
