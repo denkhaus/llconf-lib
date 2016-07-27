@@ -1,6 +1,20 @@
+(llconf ready
+    (and
+        (llconf up to date)
+        (llconf lib present)
+    )
+)
+
 (llconf lib present
     (git clone
         "https://github.com/denkhaus/llconf-lib.git"
         [var:lib_dir]
     )
+)
+
+(llconf up to date
+	(and
+		(change "go" "get" "-u" "-v" "github.com/denkhaus/llconf")
+		(change "restart" "llconf")
+	)
 )
