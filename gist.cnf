@@ -1,0 +1,19 @@
+
+(gist applied
+    (and
+        (setvar "gist_dir"  [join [var:settings_dir] "/gists/" [arg:0]])
+        (gist present [arg:0])
+        (gist processed [arg:1])
+    )
+)
+
+(gist present
+    (git clone
+        [join "https://gist.github.com/" [arg:0] ".git"]
+        [var:gist_dir]
+    )
+)
+
+(gist processed
+    (eval [arg:0] [var:gist_dir])
+)

@@ -1,3 +1,25 @@
+
+(docker stop
+    (and
+      (process running "docker")
+      (change "docker" "stop" [arg:0])
+    )
+)
+
+(docker rename
+    (and
+      (process running "docker")
+      (change "docker" "rename" [arg:0] [arg:1])
+    )
+)
+
+(docker pull
+    (and
+      (process running "docker")
+      (change "docker" "pull" [arg:0])
+    )
+)
+
 (docker installed
     (and
         (is debian)

@@ -1,0 +1,10 @@
+(file present
+		(and
+				(installed "rsync")
+        (installed "diffutils")
+			  (or
+						(test "diff" [arg:0] [arg:1])
+			      (change "rsync" [arg:0] [arg:1])
+				)
+		)
+)

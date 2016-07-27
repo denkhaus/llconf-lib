@@ -1,15 +1,15 @@
-(ensure dir
-	(or 
+(dir present
+	(or
 		(dir exists [arg:0])
        	(change "mkdir" "--parents" [arg:0])
 	)
 )
 
-(delete dir
-   	(or 
-		(dir not exists [arg:0])
-       	(change "rmdir" [arg:0])
-	)
+(dir absent
+   	(or
+				(dir not exists [arg:0])
+       	(change "rm" "-rf" [arg:0])
+		)
 )
 
 (dir exists
@@ -17,5 +17,7 @@
 )
 
 (dir not exists
-   	(test "test" "!" "-d" [arg:0])
+		(not
+				(dir exists [arg:0])
+		)
 )

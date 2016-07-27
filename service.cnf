@@ -1,0 +1,9 @@
+(service running
+    (and
+        (is debian)
+        (pipe
+            (test "service" [arg:0] "status")
+            (test "grep" "start/running")
+        )
+    )
+)

@@ -1,9 +1,0 @@
-(copy template
-		(and
-				(installed "rsync")
-			  (or
-						(test "diff" [join [join [var:work_dir] "/templates/"] [arg:0]] [arg:1])
-			      (change "rsync" [join [join [var:work_dir] "/templates/"] [arg:0]] [arg:1])
-				)
-		)
-)
