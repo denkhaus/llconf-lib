@@ -1,8 +1,5 @@
 (llconf ready
-    (and
-        (llconf up to date)
-        (llconf lib present)
-    )
+    (llconf lib present)    
 )
 
 (llconf lib present
@@ -13,8 +10,8 @@
 )
 
 (llconf up to date
-	(and
-		(change "go" "get" "-u" "-v" "github.com/denkhaus/llconf")
-		(change "restart" "llconf")
-	)
+  	(and
+    		(change "go" "get" "-u" "-v" "github.com/denkhaus/llconf")
+    		(change "restart" "llconf")
+  	)
 )
