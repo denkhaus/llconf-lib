@@ -1,4 +1,4 @@
-(lib present
+(llconf lib present
     (git clone
         "https://github.com/denkhaus/llconf-lib.git"
         [var:lib_dir]
