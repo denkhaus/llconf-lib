@@ -3,8 +3,24 @@
     (and
         (is debian)
         (or
-          (is service running [arg:0])
-          (change "service" [arg:0] "start")
+            (is service running [arg:0])
+            (change "service" [arg:0] "start")
+        )
+    )
+)
+
+(service restarted
+    (and
+        (is debian)
+        (or
+            (and
+                (is service running [arg:0])
+                (change "service" [arg:0] "restart")
+            )
+            (and
+                (is service stopped [arg:0])
+                (change "service" [arg:0] "start")
+            )
         )
     )
 )
@@ -13,8 +29,8 @@
     (and
         (is debian)
         (or
-          (is service stopped [arg:0])
-          (change "service" [arg:0] "stop")
+            (is service stopped [arg:0])
+            (change "service" [arg:0] "stop")
         )
     )
 )
