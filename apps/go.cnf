@@ -15,7 +15,7 @@
 (golang version absent
     (pipe
         (test "go" "version")
-        (test "grep" -v [arg:0])
+        (test "grep" "-v" [arg:0])
     )
 )
 
