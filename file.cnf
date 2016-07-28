@@ -8,3 +8,10 @@
 				)
 		)
 )
+
+(file absent
+		(or
+				(test "test" "!" "-f" [arg:0])
+			  (change "rm" "-f" [arg:0])				
+		)
+)
