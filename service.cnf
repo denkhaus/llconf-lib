@@ -9,12 +9,32 @@
     )
 )
 
+(service stopped
+    (and
+        (is debian)
+        (or
+          (is service stopped [arg:0])
+          (change "service" [arg:0] "stop")
+        )
+    )
+)
+
 (is service running
     (and
         (is debian)
         (pipe
             (test "service" [arg:0] "status")
             (test "grep" "start/running")
+        )
+    )
+)
+
+(is service stopped
+    (and
+        (is debian)
+        (pipe
+            (test "service" [arg:0] "status")
+            (test "grep" "stop/waiting")
         )
     )
 )
