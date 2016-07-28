@@ -1,6 +1,8 @@
 (llconf ready
-    (llconf lib present)
-    (llconf up to date)
+    (and
+        (llconf lib present)
+        (llconf up to date)
+    )    
 )
 
 (llconf lib present
