@@ -1,0 +1,27 @@
+
+(installed golang
+		(or
+        (golang version present [arg:0])
+        (and
+          (dir absent "/usr/local/go")
+          (pipe
+  						(change "curl" "-L" [join "https://storage.googleapis.com/golang/go" [arg:0] ".linux-amd64.tar.gz"] )
+  						(change "tar" "-xzf"  "-" "-C" "/usr/local")
+  				)
+        )
+		)
+)
+
+(golang version absent
+    (pipe
+        (test "go" "version")
+        (test "grep" -v [arg:0])
+    )
+)
+
+(golang version present
+    (pipe
+        (test "go" "version")
+        (test "grep" [arg:0])
+    )
+)
