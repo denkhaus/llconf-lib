@@ -1,18 +1,24 @@
 (llconf ready
-    (and
-        (llconf lib present)
-        (llconf up to date)
-        (restart)
-    )
+		(and
+				(llconf up to date)
+				(restart)
+		)
 )
 
 (llconf lib present
-    (git clone
-        "https://github.com/denkhaus/llconf-lib.git"
-        [var:lib_dir]
-    )
+		(git clone
+				"https://github.com/denkhaus/llconf-lib.git"
+				[var:lib_dir]
+		)
 )
 
 (llconf up to date
-    (change "go" "get" "-u" "-v" "github.com/denkhaus/llconf")    		
+		(or
+				(and
+						(setvar "llconf-rev-file" [join [var:lib_dir] "/.llconf_rev"])
+						(test "test" "-f" [var:llconf-rev-file])
+						(test "test" "2df4212" "==" "$(llconf --revision)")
+				)
+				(change "go" "get" "-u" "-v" "github.com/denkhaus/llconf")
+		)
 )
