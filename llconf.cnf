@@ -16,6 +16,7 @@
 		(or
 				(and
 						(setvar "llconf-rev-file" [join [var:lib_dir] "/.llconf_rev"])
+						(change "echo" [var:llconf-rev-file])
 						(test "test" "-f" [var:llconf-rev-file])
 						(change "cat" [var:llconf-rev-file])
 						(readvar "llconf-rev" (change "cat" [var:llconf-rev-file]))
