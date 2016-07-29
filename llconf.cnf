@@ -1,5 +1,6 @@
 (llconf ready
 		(and
+				(llconf lib present)
 				(llconf up to date)
 				(restart)
 		)
@@ -20,7 +21,7 @@
 						(pipe
 								(test "test" "cat" [var:llconf-rev-file])
 								(test "xargs" "-i" "test" "$(llconf --revision)" "==" "{}")
-						)						
+						)
 				)
 				(change "go" "get" "-u" "-v" "github.com/denkhaus/llconf")
 		)
