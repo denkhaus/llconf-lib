@@ -21,7 +21,7 @@
 						(test "test" "$(/usr/local/bin/llconf --revision)" "==" [var:llconf-rev])
 				)
 				(and
-						(setvar "llconf-url" [join "https://github.com/denkhaus/llconf/releases/download/" [var:llconf-rev] "/llconf-" [var:llconf-rev])
+						(setvar "llconf-url" [join "https://github.com/denkhaus/llconf/releases/download/" [var:llconf-rev] "/llconf-" [var:llconf-rev]])
 						(downloaded http [var:llconf-url] "/usr/local/bin/llconf")
 						(restart)
 				)
