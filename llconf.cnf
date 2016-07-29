@@ -23,6 +23,7 @@
 				(and
 						(setvar "llconf-url" [join "https://github.com/denkhaus/llconf/releases/download/" [var:llconf-rev] "/llconf-" [var:llconf-rev]])
 						(downloaded http [var:llconf-url] "/tmp/llconf")
+						(change "chmod" "u+x" "/tmp/llconf")
 						(restart "/tmp/llconf")
 				)
 		)
