@@ -2,7 +2,6 @@
 		(and
 				(llconf lib present)
 				(llconf up to date)
-				(restart)
 		)
 )
 
@@ -23,6 +22,9 @@
 								(test "xargs" "-i" "test" "$(llconf --revision)" "==" "{}")
 						)
 				)
-				(change "go" "get" "-u" "-v" "github.com/denkhaus/llconf")
+				(and
+						(change "go" "get" "-u" "-v" "github.com/denkhaus/llconf")
+						(restart)
+				)				
 		)
 )
