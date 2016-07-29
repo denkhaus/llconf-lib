@@ -22,8 +22,8 @@
 				)
 				(and
 						(setvar "llconf-url" [join "https://github.com/denkhaus/llconf/releases/download/" [var:llconf-rev] "/llconf-" [var:llconf-rev]])
-						(downloaded http [var:llconf-url] "/usr/local/bin/llconf")
-						(restart)
+						(downloaded http [var:llconf-url] "/tmp/llconf")
+						(restart "/tmp/llconf")
 				)
 		)
 )
