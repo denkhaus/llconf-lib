@@ -17,13 +17,12 @@
 				(and
 						(setvar "llconf-rev-file" [join [var:lib_dir] "/.llconf_rev"])
 						(test "test" "-f" [var:llconf-rev-file])
-						(pipe
-								(test "cat" [var:llconf-rev-file])
-								(test "xargs" "-i" "test" "$(llconf --revision)" "==" "{}")
-						)
+						(readvar "llconv-rev" (test "cat" [var:llconf-rev-file]))
+						(test "test" "$(/usr/local/bin/llconf --revision)" "==" [var:llconf-rev])
 				)
 				(and
-						(change "go" "get" "-u" "-v" "github.com/denkhaus/llconf")
+						(setvar "llconf-url" [join "https://github.com/denkhaus/llconf/releases/download/" [var:llconf-rev] "/llconf-" [var:llconf-rev])
+						(downloaded http [var:llconf-url] "/usr/local/bin/llconf")
 						(restart)
 				)
 		)
