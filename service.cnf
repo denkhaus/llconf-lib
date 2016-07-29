@@ -40,7 +40,7 @@
         (is debian)
         (pipe
             (test "service" [arg:0] "status")
-            (test "grep" "start/running")
+            (test "grep" "start")
         )
     )
 )
@@ -50,7 +50,7 @@
         (is debian)
         (pipe
             (test "service" [arg:0] "status")
-            (test "grep" "stop/waiting")
+            (test "grep" "stop")
         )
     )
 )
