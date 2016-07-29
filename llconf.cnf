@@ -13,7 +13,7 @@
 )
 
 (llconf up to date
-		(or
+
 				(and
 						(setvar "llconf-rev-file" [join [var:lib_dir] "/.llconf_rev"])
 						(change "echo" [var:llconf-rev-file])
@@ -22,10 +22,6 @@
 						(readvar "llconf-rev" (change "cat" [var:llconf-rev-file]))
 						(test "test" "$(/usr/local/bin/llconf --revision)" "==" [var:llconf-rev])
 				)
-				(and
-						(setvar "llconf-url" [join "https://github.com/denkhaus/llconf/releases/download/" [var:llconf-rev] "/llconf-" [var:llconf-rev]])
-						(downloaded http [var:llconf-url] "/usr/local/bin/llconf")
-						(restart)
-				)
+
 		)
 )
