@@ -18,13 +18,13 @@
 						(setvar "llconf-rev-file" [join [var:lib_dir] "/.llconf_rev"])
 						(test "test" "-f" [var:llconf-rev-file])
 						(pipe
-								(test "test" "cat" [var:llconf-rev-file])
+								(test "cat" [var:llconf-rev-file])
 								(test "xargs" "-i" "test" "$(llconf --revision)" "==" "{}")
 						)
 				)
 				(and
 						(change "go" "get" "-u" "-v" "github.com/denkhaus/llconf")
 						(restart)
-				)				
+				)
 		)
 )
