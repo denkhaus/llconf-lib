@@ -17,8 +17,8 @@
 				(and
 						(setvar "llconf-rev-file" [join [var:lib_dir] "/.llconf_rev"])
 						(test "test" "-f" [var:llconf-rev-file])
-						(readvar "llconf-rev-cur" (change "/usr/local/bin/llconf" "--revision"))
-						(readvar "llconf-rev" (change "cat" [var:llconf-rev-file]))
+						(readvar "llconf-rev-cur" (test "/usr/local/bin/llconf" "--revision"))
+						(readvar "llconf-rev" (test "cat" [var:llconf-rev-file]))
 						(test "test" [var:llconf-rev-cur] "==" [var:llconf-rev])
 				)
 				(and

@@ -42,31 +42,31 @@
     )
 )
 
-(docker cleanup
+(docker clean
     (and
-        (docker remove untagged images)
-        (docker cleanup dangling volumes)
+        (docker images clean)
+        (docker volumes clean)
     )
 )
 
-(docker remove untagged images
+(docker images clean
     (and
         (process running "docker")
         (pipe
-            (change "docker" "images")
-            (change "grep" "'none'")
-            (change "tr" "-s" "' '")
-            (change "cut" "-d" "' '" "-f" "3")
+            (test "docker" "images")
+            (test "grep" "'none'")
+            (test "tr" "-s" "' '")
+            (test "cut" "-d" "' '" "-f" "3")
             (change "xargs" "-r" "docker" "rmi" "-f")
         )
     )
 )
 
-(docker cleanup dangling volumes
+(docker volumes clean
     (and
         (process running "docker")
         (pipe
-            (change "docker" "volume" "ls" "-q" "-f" "dangling=true")
+            (test "docker" "volume" "ls" "-q" "-f" "dangling=true")
             (change "xargs" "-r" "docker" "volume" "rm" )
         )
     )
