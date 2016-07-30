@@ -1,21 +1,21 @@
 
 (docker stop
     (and
-      (process running "docker")
+      (service running "docker")
       (change "docker" "stop" [arg:0])
     )
 )
 
 (docker rename
     (and
-      (process running "docker")
+      (service running "docker")
       (change "docker" "rename" [arg:0] [arg:1])
     )
 )
 
 (docker pull
     (and
-      (process running "docker")
+      (service running "docker")
       (change "docker" "pull" [arg:0])
     )
 )
@@ -51,7 +51,7 @@
 
 (docker images clean
     (and
-        (process running "docker")
+        (service running "docker")
         (pipe
             (test "docker" "images")
             (test "grep" "'none'")
@@ -64,7 +64,7 @@
 
 (docker volumes clean
     (and
-        (process running "docker")
+        (service running "docker")
         (pipe
             (test "docker" "volume" "ls" "-q" "-f" "dangling=true")
             (change "xargs" "-r" "docker" "volume" "rm" )
