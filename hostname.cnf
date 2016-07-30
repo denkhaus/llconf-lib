@@ -1,14 +1,14 @@
 
 (hostname present
-		(or
-				(has hostname [arg:0])
-				(change "hostname" "-b" [arg:0])
-		)
+    (or
+        (has hostname [arg:0])
+        (change "hostname" "-b" [arg:0])
+    )
 )
 
 (has hostname
-		(pipe
-				(test "hostname")
-				(test "grep" [arg:0])
-		)
+    (pipe
+        (test "hostname")
+        (test "grep" [arg:0])
+    )
 )

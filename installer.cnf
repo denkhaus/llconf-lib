@@ -1,108 +1,107 @@
 
 (installed
-		(or
-       	(package present [arg:0])
-				(package install [arg:0])
-
-   	)
+    (or
+        (package present [arg:0])
+        (package install [arg:0])
+    )
 )
 
 (uninstalled
-		(or
-	   		(package absent [arg:0])
-	   		(package remove [arg:0])
-		)
+    (or
+        (package absent [arg:0])
+        (package remove [arg:0])
+    )
 )
 
 (package absent
-		(or
-				(debian package absent [arg:0])
-				(fedora package absent [arg:0])
-		)
+    (or
+        (debian package absent [arg:0])
+        (fedora package absent [arg:0])
+    )
 )
 
 (package present
-		(or
-				(debian package present [arg:0])
-				(fedora package present [arg:0])
-		)
+    (or
+        (debian package present [arg:0])
+        (fedora package present [arg:0])
+    )
 )
 
 (package install
-		(or
-				(debian package install [arg:0])
-				(fedora package install [arg:0])
-		)
+    (or
+        (debian package install [arg:0])
+        (fedora package install [arg:0])
+    )
 )
 
 (package remove
-		(or
-				(debian package remove [arg:0])
-				(fedora package remove [arg:0])
-		)
+    (or
+        (debian package remove [arg:0])
+        (fedora package remove [arg:0])
+    )
 )
 
 (debian package absent
-		(not
-				(debian package present [arg:0])
-		)
+    (not
+        (debian package present [arg:0])
+    )
 )
 
 (debian package present
-		(and
-				(is debian)
-				(pipe
-			        (test "dpkg-query" "-W" "--showformat='${Status}\n'" [arg:0])
-			        (test "grep" "install ok installed")
-			  )
-		)
+    (and
+        (is debian)
+        (pipe
+            (test "dpkg-query" "-W" "--showformat='${Status}\n'" [arg:0])
+            (test "grep" "install ok installed")
+        )
+    )
 )
 
 (debian package install
-		(and
-				(is debian)
-				(change "apt-get" "--force-yes" "--yes" "install" [arg:0])
-		)
+    (and
+        (is debian)
+        (change "apt-get" "--force-yes" "--yes" "install" [arg:0])
+    )
 )
 
 (debian package remove
-		(and
-				(is debian)
-				(change "apt-get" "--yes" "purge" [arg:0])
-		)
+    (and
+        (is debian)
+        (change "apt-get" "--yes" "purge" [arg:0])
+    )
 )
 
 (fedora package absent
     (not
-				(fedora package present [arg:0])
-		)
+        (fedora package present [arg:0])
+    )
 )
 
 (fedora package present
-		(and
-				(is fedora)
-				(pipe
-						(test "yum" "--quiet" "list" "installed")
-						(test "sed" "-rn" "s/([^.]+).*/\1/p")
-						(test "grep" [arg:0])
-				)
-		)
+    (and
+        (is fedora)
+        (pipe
+            (test "yum" "--quiet" "list" "installed")
+            (test "sed" "-rn" "s/([^.]+).*/\1/p")
+            (test "grep" [arg:0])
+        )
+    )
 )
 
 (fedora package install
-		(and
-				(is fedora)
-  			(change "yum" "install" [arg:0])
-		)
+    (and
+        (is fedora)
+        (change "yum" "install" [arg:0])
+    )
 )
 
 (fedora package remove
-		(and
-				(is fedora)
-  			(change "yum" "remove" [arg:0])
-		)
+    (and
+        (is fedora)
+        (change "yum" "remove" [arg:0])
+    )
 )
 
 (rpm install package
-  	(change "rpm" "-ihv" [arg:0])
+    (change "rpm" "-ihv" [arg:0])
 )

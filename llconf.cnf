@@ -1,31 +1,31 @@
 (llconf ready
-		(and
-				(llconf lib present)
-				(llconf up to date)
-		)
+    (and
+        (llconf lib present)
+        (llconf up to date)
+    )
 )
 
 (llconf lib present
-		(git clone
-				"https://github.com/denkhaus/llconf-lib.git"
-				[var:lib_dir]
-		)
+    (git clone
+        "https://github.com/denkhaus/llconf-lib.git"
+        [var:lib_dir]
+    )
 )
 
 (llconf up to date
-		(or
-				(and
-						(setvar "llconf-rev-file" [join [var:lib_dir] "/.llconf_rev"])
-						(test "test" "-f" [var:llconf-rev-file])
-						(readvar "llconf-rev-cur" (test "/usr/local/bin/llconf" "--revision"))
-						(readvar "llconf-rev" (test "cat" [var:llconf-rev-file]))
-						(test "test" [var:llconf-rev-cur] "==" [var:llconf-rev])
-				)
-				(and
-						(setvar "llconf-url" [join "https://github.com/denkhaus/llconf/releases/download/" [var:llconf-rev] "/llconf-" [var:llconf-rev]])
-						(downloaded http [var:llconf-url] "/tmp/llconf")
-						(change "chmod" "u+x" "/tmp/llconf")
-						(restart "/tmp/llconf")
-				)
-		)
+    (or
+        (and
+            (setvar "llconf-rev-file" [join [var:lib_dir] "/.llconf_rev"])
+            (test "test" "-f" [var:llconf-rev-file])
+            (readvar "llconf-rev-cur" (test "/usr/local/bin/llconf" "--revision"))
+            (readvar "llconf-rev" (test "cat" [var:llconf-rev-file]))
+            (test "test" [var:llconf-rev-cur] "==" [var:llconf-rev])
+        )
+        (and
+            (setvar "llconf-url" [join "https://github.com/denkhaus/llconf/releases/download/" [var:llconf-rev] "/llconf-" [var:llconf-rev]])
+            (downloaded http [var:llconf-url] "/tmp/llconf")
+            (change "chmod" "u+x" "/tmp/llconf")
+            (restart "/tmp/llconf")
+        )
+    )
 )

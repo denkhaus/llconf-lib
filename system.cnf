@@ -1,37 +1,37 @@
 (system restart
-		(change "shutdown" "-r" "now")
+    (change "shutdown" "-r" "now")
 )
 
 (system halt
-		(change "shutdown" "-h" "now")
+    (change "shutdown" "-h" "now")
 )
 
 (system update
     (and
-				(is debian)
+        (is debian)
         (change "apt-get" "update")
         (change "apt-get" "--yes" "upgrade")
         (change "apt-get" "--yes" "dist-upgrade")
-				(change "apt-get" "--yes" "autoremove")
-		)
+        (change "apt-get" "--yes" "autoremove")
+    )
 )
 
 (is debian
-		(or
-				(pipe
-					(test "uname" "-v")
-					(test "grep" "Debian")
-				)
-				(pipe
-					(test "uname" "-v")
-					(test "grep" "Ubuntu")
-				)
-		)
+    (or
+        (pipe
+            (test "uname" "-v")
+            (test "grep" "Debian")
+        )
+        (pipe
+            (test "uname" "-v")
+            (test "grep" "Ubuntu")
+        )
+    )
 )
 
 (is fedora
-		(pipe
-				(test "uname" "-v")
-				(test "grep" "Fedora")
-		)
+    (pipe
+        (test "uname" "-v")
+        (test "grep" "Fedora")
+    )
 )

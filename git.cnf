@@ -1,6 +1,6 @@
 (git clone
     (or
-		    (and
+        (and
             (git repo present [arg:1])
             (git repo uptodate [arg:1])
         )
@@ -13,7 +13,7 @@
           (test "test" "-d" [arg:0])
           (indir [arg:0]
               (test "test" "-d" ".git")
-          )          
+          )
       )
 )
 
@@ -22,8 +22,8 @@
         (and
             (test "git" "fetch" "--all")
             (or
-				        (test "git" "diff" "--quiet" "HEAD@{upstream}")
-				        (change "git" "reset" "--hard" "HEAD@{upstream}")
+                (test "git" "diff" "--quiet" "HEAD@{upstream}")
+                (change "git" "reset" "--hard" "HEAD@{upstream}")
             )
         )
     )

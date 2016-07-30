@@ -1,23 +1,23 @@
 (dir present
-	(or
-		(dir exists [arg:0])
-       	(change "mkdir" "--parents" [arg:0])
-	)
+    (or
+        (dir exists [arg:0])
+        (change "mkdir" "--parents" [arg:0])
+    )
 )
 
 (dir absent
-   	(or
-				(dir not exists [arg:0])
-       	(change "rm" "-rf" [arg:0])
-		)
+    (or
+        (dir not exists [arg:0])
+        (change "rm" "-rf" [arg:0])
+    )
 )
 
 (dir exists
-   	(test "test" "-d" [arg:0])
+    (test "test" "-d" [arg:0])
 )
 
 (dir not exists
-		(not
-				(dir exists [arg:0])
-		)
+    (not
+        (dir exists [arg:0])
+    )
 )
