@@ -6,7 +6,7 @@
     (change "shutdown" "-h" "now")
 )
 
-(system update
+(system full update
     (and
         (is debian)
         (change "apt-get" "update")
@@ -15,6 +15,15 @@
         (change "apt-get" "--yes" "autoremove")
     )
 )
+
+(system update
+    (and
+        (is debian)
+        (change "apt-get" "update")
+    )
+)
+
+
 
 (is debian
     (or
