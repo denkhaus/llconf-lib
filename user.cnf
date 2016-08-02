@@ -25,3 +25,10 @@
         (test "grep" [arg:0])
     )
 )
+
+(is current user
+    (pipe
+        (test "id" "-un")
+        (test "grep" [arg:0])
+    )
+)
