@@ -60,7 +60,7 @@
 (debian package install
     (and
         (is debian)
-        (change "apt-get" "--force-yes" "--yes" "install" [arg:0])
+        (change "apt-get" "--yes" "install" [arg:0])
     )
 )
 
