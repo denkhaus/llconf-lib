@@ -1,7 +1,9 @@
 (llconf ready
     (and
         (llconf lib present)
+        (info "llconf std library is up to date")
         (llconf up to date)
+        (info "llconf system is up to date")
     )
 )
 
