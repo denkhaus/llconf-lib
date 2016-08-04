@@ -51,7 +51,7 @@
     (and
         (is debian)
         (pipe
-            (test "dpkg-query" "-W" "--showformat='${Status}\n'" [arg:0])
+            (test "dpkg-query" "-W" "--showformat=${Status}" [arg:0])
             (test "grep" "install ok installed")
         )
     )

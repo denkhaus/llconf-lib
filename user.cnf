@@ -1,12 +1,12 @@
 
-(ensure user present
+(user present
     (or
         (is user present [arg:0])
         (change "sudo" "useradd" "-m" "-U" [arg:0])
     )
 )
 
-(ensure user absent
+(user absent
     (or
         (is user absent [arg:0])
         (change "sudo" "userdel" "-r" [arg:0])
