@@ -9,7 +9,7 @@
 (user absent
     (or
         (is user absent [arg:0])
-        (change "sudo" "userdel" "-r" [arg:0])
+        (change "sudo" "userdel" "-rf" [arg:0])
     )
 )
 
