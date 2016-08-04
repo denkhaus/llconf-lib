@@ -38,9 +38,15 @@
 (is service running
     (and
         (is debian)
-        (pipe
-            (test "service" [arg:0] "status")
-            (test "grep" "start")
+        (or
+            (pipe
+                (test "service" [arg:0] "status")
+                (test "grep" "start")
+            )
+            (pipe
+                (test "service" [arg:0] "status")
+                (test "grep" "running")
+            )
         )
     )
 )
