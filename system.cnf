@@ -6,7 +6,7 @@
     (change "shutdown" "-h" "now")
 )
 
-(system full update
+(system update full
     (and
         (is debian)
         (change "apt-get" "update")
