@@ -3,7 +3,7 @@
         (and
             (llconf lib present)
             (info "llconf std library is up to date")
-            (llconf up to date)
+            (llconf up to date [arg:0] [arg:1])
             (info "llconf system is up to date")
         )
         (warn "llconf is not ready")
@@ -27,7 +27,7 @@
             (test "test" [var:llconf-rev-cur] "==" [var:llconf-rev])
         )
         (and
-            (setvar "llconf-url" [join "https://github.com/denkhaus/llconf/releases/download/" [var:llconf-rev] "/llconf-" [var:llconf-rev]])
+            (setvar "llconf-url" [join "https://github.com/denkhaus/llconf/releases/download/" [var:llconf-rev] "/llconf-" [var:llconf-rev] "-" [arg:0] "-" [arg:1]])
             (downloaded http [var:llconf-url] "/tmp/llconf")
             (change "chmod" "u+x" "/tmp/llconf")
             (restart "/tmp/llconf")
